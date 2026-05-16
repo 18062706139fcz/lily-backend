@@ -23,6 +23,7 @@
   "author": "Lily Protocol",
   "license": "ISC",
   "type": "commonjs",
+  "packageManager": "npm@11.6.2",
   "engines": {
     "node": ">=22.0.0"
   },
