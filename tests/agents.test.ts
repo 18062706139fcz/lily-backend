@@ -1,14 +1,22 @@
+import type { Express } from "express";
 import request from "supertest";
 import { beforeEach, describe, expect, it } from "vitest";
 
-import { createApp } from "../src/app";
-import { agentsService } from "../src/modules/agents/agents.service";
+import { createIsolatedTestApp } from "./helpers/create-test-app";
 
 describe("agent endpoints", () => {
-  const app = createApp();
+  let app: Express;
 
-  beforeEach(() => {
-    agentsService.reset();
+  beforeEach(async () => {
+    app = await createIsolatedTestApp();
+  });
+
+  it("does not expose test-only reset behavior from the production service", async () => {
+    const { agentsService } = await import(
+      "../src/modules/agents/agents.service"
+    );
+
+    expect(agentsService).not.toHaveProperty("reset");
   });
 
   it("returns seeded agents so contributors can inspect a real module", async () => {
