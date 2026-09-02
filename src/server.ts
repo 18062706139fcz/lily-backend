@@ -51,6 +51,9 @@ const shutdown = (signal: string) => {
   });
 };
 
+const normalizeError = (reason: unknown): Error =>
+  reason instanceof Error ? reason : new Error(String(reason));
+
 process.on("SIGINT", () => shutdown("SIGINT"));
 process.on("SIGTERM", () => shutdown("SIGTERM"));
 
