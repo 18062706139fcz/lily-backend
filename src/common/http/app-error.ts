@@ -1,3 +1,10 @@
+export type ErrorCode =
+  | "VALIDATION_ERROR"
+  | "NOT_FOUND"
+  | "RATE_LIMITED"
+  | "INTERNAL_SERVER_ERROR"
+  | (string & {});
+
 export class AppError extends Error {
   public readonly statusCode: number;
   public readonly details: unknown;
