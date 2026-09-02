@@ -30,6 +30,7 @@ describe("health endpoints", () => {
     expect(timestampMs).toBeLessThanOrEqual(afterRequest);
   });
 
+
   it("returns a typed 404 payload for missing routes", async () => {
     const response = await request(app).get("/missing");
 
