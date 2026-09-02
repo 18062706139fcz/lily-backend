@@ -15,12 +15,16 @@ export const listAgents = (
 };
 
 export const createAgent = (
-  request: Request,
+  request: Request<Record<string, never>, unknown, CreateAgentInput>,
   response: Response<ApiSuccessResponse<CreateAgentResponse>>,
 ): void => {
+  const agent = agentsService.createAgent(request.body);
+
   response.status(201).json({
     success: true,
-    data: agentsService.createAgent(request.body),
+    data: {
+      agent,
+    },
   });
 };
 

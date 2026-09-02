@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response, Router } from "express";
 
-import { AppError } from "./app-error";
+import { AppError } from "@/common/http/app-error";
 
 /**
  * Collects all defined route paths from an Express 5 router stack.
